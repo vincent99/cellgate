@@ -1,0 +1,14 @@
+image:
+  pullPolicy: IfNotPresent
+  repository: vincent99/cellgate
+  tag: latest
+portal:
+  open:
+    enabled: true
+service:
+  main:
+    ports:
+      main:
+        port: 8000
+        protocol: http
+        targetPort: 80
