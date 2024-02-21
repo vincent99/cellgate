@@ -1,0 +1,31 @@
+apiVersion: v1
+entries:
+  cellgate:
+  - annotations:
+      max_scale_version: 29.10.2
+      min_scale_version: 23.10.0
+      truecharts.org/SCALE-support: "true"
+      truecharts.org/category: Home
+      truecharts.org/max_helm_version: "3.14"
+      truecharts.org/min_helm_version: "3.12"
+      truecharts.org/train: stable
+    apiVersion: v2
+    appVersion: 1.0.0
+    created: "2024-02-21T07:14:37.057150149Z"
+    dependencies:
+    - name: common
+      repository: oci://tccr.io/truecharts
+      version: 17.4.2
+    description: Cellgate Remote
+    digest: 4295363278d1d2766716248c68dd2b63cbf1b18afa849acb8e1b8216df528ff5
+    home: https://github.com/vincent99/cellgate
+    kubeVersion: '>=1.24.0-0'
+    name: cellgate
+    sources:
+    - https://github.com/vincent99/cellgate/tree/gh-pages/charts/stable/cellgate
+    - https://hub.docker.com/r/vincent99/cellgate
+    type: application
+    urls:
+    - https://github.com/vincent99/cellgate/releases/download/cellgate-1.0.0/cellgate-1.0.0.tgz
+    version: 1.0.0
+generated: "2024-02-21T07:14:37.057159778Z"
