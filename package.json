@@ -1,0 +1,19 @@
+{
+  "name": "cellgate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vincent Fiduccia <vincent@vtf.me>",
+  "license": "MIT",
+  "dependencies": {
+    "eslint": "^7.32.0",
+    "express": "^4.17.1",
+    "jwt-decode": "^3.1.2",
+    "morgan": "^1.10.0",
+    "node-fetch": "^3.0.0",
+    "request": "^2.88.2"
+  }
+}
