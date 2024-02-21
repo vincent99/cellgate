@@ -19,6 +19,7 @@ dependencies:
 deprecated: false
 description: Cellgate Remote
 home: https://github.com/vincent99/cellgate
+icon: https://truecharts.org/img/hotlink-ok/chart-icons/remotely.png
 kubeVersion: ">=1.24.0-0"
 name: cellgate
 sources:
