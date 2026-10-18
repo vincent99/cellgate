@@ -1,8 +1,8 @@
-FROM node:20-alpine
+FROM node:26-alpine
 WORKDIR /src
 
-COPY package.json yarn.lock ./
-RUN yarn --pure-lockfile
+COPY package.json package-lock.json ./
+RUN npm install
 
 COPY . .
 
