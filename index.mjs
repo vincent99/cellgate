@@ -262,16 +262,20 @@ app.get('/', async (req, res) => {
     '<head>' +
       (result ? '<meta http-equiv="refresh" content="5;url=/" />' : '') +
       '<meta name="viewport" content="width=device-width">' +
+      '<script>(function(){var h=new Date().getHours();if(h>=19||h<7){document.documentElement.setAttribute("data-theme","dark");}})();</script>' +
       '<style>' +
-        'BODY { padding: 20px; background-color: white; font-family: Verdana; }\n' +
-        '.btn, .btn:focus, .btn:hover, .btn:visited, .btn:link { padding: 20px; margin-bottom: 20px; text-decoration: none; font-size: 24pt; text-align: center; line-height: 100px; background-color: #ccf; border: 1px solid #33f; border-radius: 5px; display: block; height: 100px; }\n' +
-        '@media (prefers-color-scheme: dark) { BODY { background-color: black; } .btn { background-color: #333; border-color: #338;"; } }\n' +
+        'BODY { padding: 20px; background-color: #f5f5f7; color: #1a1a1a; font-family: Verdana; }\n' +
+        '.btn, .btn:focus, .btn:hover, .btn:visited, .btn:link { padding: 20px; margin-bottom: 20px; text-decoration: none; font-size: 24pt; text-align: center; line-height: 100px; background-color: #e4e7ff; color: #3730a3; border: 1px solid #6366f1; border-radius: 5px; display: block; height: 100px; }\n' +
+        'H3 { color: #b91c1c; }\n' +
+        'HTML[data-theme="dark"] BODY { background-color: #16181d; color: #e5e7eb; }\n' +
+        'HTML[data-theme="dark"] .btn, HTML[data-theme="dark"] .btn:focus, HTML[data-theme="dark"] .btn:hover, HTML[data-theme="dark"] .btn:visited, HTML[data-theme="dark"] .btn:link { background-color: #2a2d3a; color: #c7d2fe; border-color: #818cf8; }\n' +
+        'HTML[data-theme="dark"] H3 { color: #f87171; }\n' +
       '</style>' +
     '</head>' +
     '<body>' +
     '<div><a class="btn" href="/?elmhurst">Elmhurst</a></div>' +
     '<div><a class="btn" href="/?hunt">Hunt Highway</a></div>' +
-    `<h3 style="color: red; margin: 20px 0;">${result ? (result?.data?.result || result?.message) : ''}</h3>` +
+    `<h3 style="margin: 20px 0;">${result ? (result?.data?.result || result?.message) : ''}</h3>` +
     '</body></html>');
 })
 
