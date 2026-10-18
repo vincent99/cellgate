@@ -187,14 +187,33 @@ async function apiCall(cmd, method='GET', headers={}, body=null) {
   return data;
 }
 
-function authedCall(cmd, method='GET', headers={}, body=null) {
+function isTokenExpired(result) {
+  return result?.isSuccess === false && /expired/i.test(result?.message || '');
+}
+
+async function refreshToken() {
+  const res = await login();
+
+  authToken = res.token;
+  decoded = jwt_decode(authToken);
+}
+
+async function authedCall(cmd, method='GET', headers={}, body=null, retry=true) {
   const moreHeaders = {
     'authorization': `Bearer ${authToken}`,
     'content-length': body ? body.length : 0,
     ...headers
   };
 
-  return apiCall(cmd, method, moreHeaders, body);
+  const result = await apiCall(cmd, method, moreHeaders, body);
+
+  if ( retry && isTokenExpired(result) ) {
+    await refreshToken();
+
+    return authedCall(cmd, method, headers, body, false);
+  }
+
+  return result;
 }
 
 // function checkAlreadyLoggedIn() {
@@ -246,6 +265,7 @@ app.get('/', async (req, res) => {
       '<style>' +
         'BODY { padding: 20px; background-color: white; font-family: Verdana; }\n' +
         '.btn, .btn:focus, .btn:hover, .btn:visited, .btn:link { padding: 20px; margin-bottom: 20px; text-decoration: none; font-size: 24pt; text-align: center; line-height: 100px; background-color: #ccf; border: 1px solid #33f; border-radius: 5px; display: block; height: 100px; }\n' +
+        '@media (prefers-color-scheme: dark) { BODY { background-color: black; } .btn { background-color: #333; border-color: #338;"; } }\n' +
       '</style>' +
     '</head>' +
     '<body>' +
