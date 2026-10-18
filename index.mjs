@@ -198,6 +198,12 @@ async function refreshToken() {
   decoded = jwt_decode(authToken);
 }
 
+function tokenExpiringSoon() {
+  const fiveMinutesFromNow = (new Date().getTime())/1000 + (5 * 60);
+
+  return !decoded || decoded.exp < fiveMinutesFromNow;
+}
+
 async function authedCall(cmd, method='GET', headers={}, body=null, retry=true) {
   const moreHeaders = {
     'authorization': `Bearer ${authToken}`,
@@ -249,6 +255,10 @@ app.use(morgan('combined'));
 const port = 8000;
 
 app.get('/', async (req, res) => {
+  if ( tokenExpiringSoon() ) {
+    await refreshToken();
+  }
+
   let result;
 
   if ( typeof req.query['hunt'] !== 'undefined' ) {
