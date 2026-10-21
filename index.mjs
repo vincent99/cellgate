@@ -251,6 +251,7 @@ function open(gate) {
 }
 
 const app = express();
+app.set('trust proxy', true);
 app.use(morgan('combined'));
 const port = 8000;
 
